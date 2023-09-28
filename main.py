@@ -7,8 +7,13 @@ REGION_BATTLE = (1854, 238, 164, 46)
 REGION_SCREEN = (768, 102, 957, 702)
 REGION_LOOT = (1165, 370, 167, 167)
 REGION_MAP = (2389, 26, 116, 116)
-REGION_CENTER_MAP = (2443, 78, 10, 10)
+REGION_CENTER_MAP = (2442, 77, 9, 9)
+REGION_TARGET_LINE = (1859, 250, 22, 3)
+REGION_AMULET = (2393, 257, 32, 32)
+REGION_RING = (1753, 257, 32, 32)
 CENTER_FLOR = (1248, 461)
+REGION_FLOR_LEVEL = (2530, 71, 25, 70)
+FLOR_LEVEL = None
 LIFE_STATUS = (218, 79, 79)
 FULL_LIFE_STATUS = (218, 79, 79)
 MANA_STATUS = (83, 80, 217)
@@ -64,6 +69,58 @@ def check_flag_flor_toggle_center():
 def flag_flor_toggle_toggle():
     return pg.locateOnScreen('imgs/flaggg_toggle.png', region=(REGION_MAP))
 
+def check_flor_level():
+    if pg.locateOnScreen('imgs_flor/flag_up_down_8.png', region=(REGION_FLOR_LEVEL)) != None:
+        return '0'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_9.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'd1'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_10.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'd2'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_11.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'd3'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_12.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'd4'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_13.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'd5'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_14.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'd6'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_15.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'd7'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_16.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'd8'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_7.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'u1'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_6.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'u2'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_5.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'u3'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_4.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'u4'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_3.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'u5'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_2.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'u6'
+    elif pg.locateOnScreen('imgs_flor/flag_up_down_1.png', region=(REGION_FLOR_LEVEL)) != None:     
+        return 'u7'
+
+def check_equip():
+    if pg.locateOnScreen('imgs/amulet_slot.png', confidence=0.90, region=REGION_AMULET) != None:
+        if event_th.is_set():
+            return
+        print('colocando amuleto')
+        pg.press('F9')
+        pg.sleep(0.4)
+    if pg.locateOnScreen('imgs/ring_slot.png', confidence=0.90, region=REGION_RING) != None:
+        if event_th.is_set():
+            return
+        print('colocando ring')
+        pg.press('7')
+        pg.sleep(0.4)
+
+def flor_level_att():
+    global FLOR_LEVEL
+    FLOR_LEVEL = check_flor_level()
+
 def circle_rotation():
     global counter_circle  # Indica que estamos usando a variável global
     if counter_circle == 1:
@@ -77,7 +134,7 @@ def circle_rotation():
     
     
 def combat():
-    while pg.locateOnScreen('imgs/Target.png',confidence=0.89 , region=REGION_BATTLE) != None:
+    while pg.locateOnScreen('imgs/target.png',confidence=0.89 , region=REGION_TARGET_LINE) != None:
         if event_th.is_set():
             return
         print('atacando o alvo')
@@ -146,11 +203,12 @@ def kill_Monster():
         get_loot()
         if event_th.is_set():
             return
-        pg.sleep(0.7)
+        pg.sleep(0.3)
         print('Procurando outro monstro!')
         
        
 def hunt_rotation():
+    global FLOR_LEVEL
     global flag_flor_toggle
     if flag_huter_toggle() != None:
         if counter_circle == 1:
@@ -160,6 +218,10 @@ def hunt_rotation():
                     return
                 if check_flag_center() == None:
                     kill_Monster()
+                    pg.sleep(0.2)
+                    check_status('life')
+                    pg.sleep(0.2)
+                    check_status('mana')
                     #get_loot_on_screen()
                     flag_hunter = flag_huter_toggle()
                     x, y = pg.center(flag_hunter)
@@ -180,6 +242,10 @@ def hunt_rotation():
                     return
                 if check_flag_center() == None:
                     kill_Monster()
+                    pg.sleep(0.2)
+                    check_status('life')
+                    pg.sleep(0.2)
+                    check_status('mana')
                     #get_loot_on_screen()
                     flag_hunter = flag_huter_toggle()
                     x, y = pg.center(flag_hunter)
@@ -201,6 +267,11 @@ def hunt_rotation():
                     return
                 if check_flag_center() == None:
                     kill_Monster()
+                    pg.sleep(0.2)
+                    check_status('life')
+                    pg.sleep(0.2)
+                    check_status('mana')
+                    check_equip()
                     #get_loot_on_screen()
                     flag_hunter = flag_huter_toggle()
                     x, y = pg.center(flag_hunter)
@@ -220,6 +291,10 @@ def hunt_rotation():
                     return
                 if check_flag_center() == None:
                     kill_Monster()
+                    pg.sleep(0.2)
+                    check_status('life')
+                    pg.sleep(0.2)
+                    check_status('mana')
                     #get_loot_on_screen()
                     flag_hunter = flag_huter_toggle()
                     x, y = pg.center(flag_hunter)
@@ -240,7 +315,15 @@ def hunt_rotation():
                         if event_th.is_set():
                             return
                         if check_flag_flor_center() == None:
+                            if FLOR_LEVEL != check_flor_level():
+                                FLOR_LEVEL = check_flor_level()
+                                pg.sleep(1)
+                                run()
                             kill_Monster()
+                            pg.sleep(0.2)
+                            check_status('life')
+                            pg.sleep(0.2)
+                            check_status('mana')
                             #get_loot_on_screen()
                             flor_toggle = flag_flor_up_down()
                             x, y = pg.center(flor_toggle)
@@ -264,6 +347,10 @@ def hunt_rotation():
                             return
                         if check_flag_flor_center() == None:
                             kill_Monster()
+                            pg.sleep(0.2)
+                            check_status('life')
+                            pg.sleep(0.2)
+                            check_status('mana')
                             #get_loot_on_screen()
                             flor_toggle = flag_flor_up_down()
                             x, y = pg.center(flor_toggle)
@@ -274,13 +361,19 @@ def hunt_rotation():
                             #get_loot_on_screen()
                             pg.sleep(1)
                         else:
+                            pg.sleep(0.7)
                             pg.moveTo(CENTER_FLOR)
+                            pg.sleep(0.3)
                             pg.click(button="right")
+                            pg.sleep(0.3)
                             pg.press('v') 
                             pg.moveTo(CENTER_FLOR)
+                            pg.sleep(0.3)
                             pg.click()
+                            flag_flor_toggle = 'down'
+                            FLOR_LEVEL = check_flor_level()
                             circle_flag_toggle = 2
-                            pg.sleep(1)
+                            pg.sleep(1) 
                             
             elif flag_flor_toggle_toggle() != None:
                 if flag_flor_toggle == 'down':
@@ -289,7 +382,16 @@ def hunt_rotation():
                         if event_th.is_set():
                             return
                         if check_flag_flor_toggle_center() == None:
+                            if FLOR_LEVEL != check_flor_level():
+                                FLOR_LEVEL = check_flor_level()
+                                flag_flor_toggle = 'up'
+                                pg.sleep(1)
+                                run()
                             kill_Monster()
+                            pg.sleep(0.2)
+                            check_status('life')
+                            pg.sleep(0.2)
+                            check_status('mana')
                             #get_loot_on_screen()
                             flor_toggle = flag_flor_toggle_toggle()
                             x, y = pg.center(flor_toggle)
@@ -314,6 +416,10 @@ def hunt_rotation():
                             return
                         if check_flag_flor_toggle_center() == None:
                             kill_Monster()
+                            pg.sleep(0.2)
+                            check_status('life')
+                            pg.sleep(0.2)
+                            check_status('mana')
                             #get_loot_on_screen()
                             flor_toggle = flag_flor_toggle_toggle()
                             x, y = pg.center(flor_toggle)
@@ -324,9 +430,9 @@ def hunt_rotation():
                             #get_loot_on_screen()
                             pg.sleep(1)
                         else:
-                            pg.sleep(0.7)
-                            pg.moveTo(CENTER_FLOR)
                             pg.sleep(0.3)
+                            pg.moveTo(CENTER_FLOR)
+                            pg.sleep(0.6)
                             pg.click(button="right")
                             pg.sleep(0.3)
                             pg.press('v') 
@@ -334,6 +440,7 @@ def hunt_rotation():
                             pg.sleep(0.3)
                             pg.click()
                             flag_flor_toggle = 'down'
+                            FLOR_LEVEL = check_flor_level()
                             circle_flag_toggle = 2
                             pg.sleep(1)  
                             
@@ -343,17 +450,10 @@ def hunt_rotation():
 def run():
     print('inicio')
     while True:
+        flor_level_att()
         if event_th.is_set():
             return
         hunt_rotation()
-        if event_th.is_set():
-            return
-        pg.sleep(0.1)
-        check_status('life')
-        if event_th.is_set():
-            return
-        pg.sleep(0.1)
-        check_status('mana')
         if event_th.is_set():
             return
     

@@ -4,7 +4,7 @@ from pynput import keyboard
 import os
 
 
-FOLDER_NAME = 'imgs_flor'
+FOLDER_NAME = 'lol'
 
 
 def create_folder():
@@ -17,8 +17,10 @@ class Rec:
         self.count = 1
 
     def photo(self):
-        x, y = pg.position()
-        photo = pg.screenshot(region=(x, y, 25, 70))
+        
+        pg.sleep(0.3)
+        
+        photo = pg.screenshot(region=( 1860, 252, 19, 1))
         photo.save(f'{FOLDER_NAME}/flag_up_down_{self.count}.png')
         self.count = self.count + 1
     
