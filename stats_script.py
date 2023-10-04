@@ -28,7 +28,7 @@ def check_status(name):
         if event_th.is_set():
             return
         if pg.pixel(2497, 160) != MANA_STATUS:
-            if pg.pixel(2446, 160) != MANA_STATUS:
+            if pg.pixel(2476, 160) != MANA_STATUS:
                 pg.press('f')
 
 
