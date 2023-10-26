@@ -6,32 +6,12 @@ import threading
 aviso = 1
 print(aviso)
 
-LIFE_STATUS = (218, 79, 79)
-FULL_LIFE_STATUS = (218, 79, 79)
-MANA_STATUS = (83, 80, 217)
 REGION_BUF_BAR = (2392, 315, 107, 11)
 
 
-
-def check_status(name):
-    if name == 'life':
-        print(f'checando {name}...')
-        if event_th.is_set():
-            return
-        if pg.pixel(2497, 147) != FULL_LIFE_STATUS:
-            if pg.pixel(2446, 147) != LIFE_STATUS:
-                pg.press('3')
-            elif pg.pixel(2474, 147) != LIFE_STATUS:
-                pg.press('2')
-            elif pg.pixel(2485, 147) != LIFE_STATUS:
-                pg.press('1')
-    elif name == 'mana':  
-        print(f'checando {name}...')
-        if event_th.is_set():
-            return
-        if pg.pixel(2497, 160) != MANA_STATUS:
-            if pg.pixel(2446, 160) != MANA_STATUS:
-                pg.press('f')
+def check_fome():
+    print(pg.locateOnScreen('imgs/buf_speed.png', confidence=0.90, region=REGION_BUF_BAR))
+    print(pg.locateOnScreen('imgs/buf_hungry.png', confidence=0.90, region=REGION_BUF_BAR))
     if pg.locateOnScreen('imgs/buf_hungry.png', confidence=0.90, region=REGION_BUF_BAR) != None:
         print('entrou eenenenene')
         counter = 0
@@ -48,12 +28,7 @@ def run():
     while True:
         if event_th.is_set():
             return
-        check_status('life')
-        pg.sleep(0.2)
-        if event_th.is_set():
-            return
-        check_status('mana')
-        pg.sleep(0.2)
+        check_fome()
         if event_th.is_set():
             return
 
