@@ -10,6 +10,8 @@ LIFE_STATUS = (218, 79, 79)
 FULL_LIFE_STATUS = (218, 79, 79)
 MANA_STATUS = (83, 80, 217)
 REGION_BUF_BAR = (2392, 315, 107, 11)
+REGION_AMULET = (2393, 185, 32, 32)
+REGION_RING = (2393, 257, 32, 32)
 
 
 
@@ -41,6 +43,21 @@ def check_status(name):
             print('comendo!')
             pg.press('u')
             counter += 1
+            
+def check_equip():
+    print('checando equips!')
+    if pg.locateOnScreen('imgs/amulet_slot.png', confidence=0.90, region=REGION_AMULET) != None:
+        if event_th.is_set():
+            return
+        print('colocando amuleto')
+        pg.press('F9')
+        pg.sleep(0.2)
+    if pg.locateOnScreen('imgs/ring_slot.png', confidence=0.90, region=REGION_RING) != None:
+        if event_th.is_set():
+            return
+        print('colocando ring')
+        pg.press('7')
+        pg.sleep(0.2)
 
 
 def run():
@@ -56,6 +73,7 @@ def run():
         pg.sleep(0.2)
         if event_th.is_set():
             return
+        check_equip()
 
 
 def key_code(key):

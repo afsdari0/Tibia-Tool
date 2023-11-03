@@ -186,7 +186,7 @@ def get_loot():
         if event_th.is_set():
             return
         pg.click(button="middle")
-        pg.sleep(0.2)
+        pg.sleep(0.05)
         counter += 1
     
  
@@ -217,7 +217,6 @@ def kill_Monster():
             return
         print('Monstro morto!')
         get_loot()
-        pg.sleep(0.2)
         if event_th.is_set():
             return
         print('Procurando outro monstro!')
