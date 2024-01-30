@@ -173,12 +173,12 @@ def check_status():
         if pg.pixel(2446, 160) != MANA_STATUS:
             pg.press('f')
         pg.sleep(0.3)
-    #if pg.locateOnScreen('imgs/buf_speed.png', confidence=0.90, region=REGION_BUF_BAR) == None:
-        #if event_th.is_set():
-            #return
-        #print('buf speed!')
-        #pg.press('4')
-        #pg.sleep(0.4)
+    if pg.locateOnScreen('imgs/buf_speed.png', confidence=0.90, region=REGION_BUF_BAR) == None:
+        if event_th.is_set():
+            return
+        print('buf speed!')
+        pg.press('4')
+        pg.sleep(0.4)
  
 def get_loot():
     counter = 0
