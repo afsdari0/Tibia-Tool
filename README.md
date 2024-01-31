@@ -3,7 +3,7 @@
 </h1>
 
 ![tibiaBotReadme](https://github.com/afsdari0/ModuleTB/assets/100225519/fe3ec09a-5e8b-4d4d-af83-d0476ea5a574)
-> Status: Comcluido ✅
+> Status: Concluído ✅
 
 [Download](https://github.com/afsdari0/ModuleTB)
 
