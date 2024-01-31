@@ -98,7 +98,7 @@ Todas as marcações devem aparecer no mini mapa a todo momento durante a execu�
 
 1) Fazer o procedimento do tópico "**Observação**"
    > Deixe o jogo com a opacidade = 1 acima da janela do OBS
-2) Fassa login na sua conta e se prepare para o local de caça!
+2) Faça login na sua conta e se prepare para o local de caça!
 3) Com todos os pontos marcados e aparentes no seu mini mapa execute o 📁[main.py](https://github.com/afsdari0/ModuleTB/blob/main/main.py) em um terminal.
    > O 📁[main.py](https://github.com/afsdari0/ModuleTB/blob/main/main.py) deve ser o já configurado para a sua máquina como fala no tópico "**Configuração**"!
 4) Após aparecer o número "1" no terminal quer dizer que já está pronto para iniciar o bot.
@@ -109,5 +109,5 @@ Todas as marcações devem aparecer no mini mapa a todo momento durante a execu�
 # Avisos ❗
 
 + Esse bot foi desenvolvido para fins de estudo práticos de Python!
-+ Ainda pode conter bugs, futuras correções poderá ser feitas! ⚠️
++ Ainda pode conter bugs, futuras correções poderão ser feitas! ⚠️
 + Esse bot não pode ser identificado pelo tibia, mas jogadores podem te gravar usando e você poderá levar ban!
