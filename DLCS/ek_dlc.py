@@ -32,7 +32,7 @@ def check_status(name):
         if event_th.is_set():
             return
         if pg.pixel(2497, 160) != MANA_STATUS:
-            if pg.pixel(2446, 160) != MANA_STATUS:
+            if pg.pixel(2474, 160) != MANA_STATUS:
                 pg.press('f')
     if pg.locateOnScreen('imgs/buf_hungry.png', confidence=0.90, region=REGION_BUF_BAR) != None:
         print('entrou eenenenene')
@@ -43,7 +43,7 @@ def check_status(name):
             print('comendo!')
             pg.press('u')
             counter += 1
-            
+"""            
 def check_equip():
     print('checando equips!')
     if pg.locateOnScreen('imgs/amulet_slot.png', confidence=0.90, region=REGION_AMULET) != None:
@@ -58,7 +58,7 @@ def check_equip():
         print('colocando ring')
         pg.press('7')
         pg.sleep(0.2)
-
+"""
 
 def run():
     print('inicio')
@@ -73,11 +73,11 @@ def run():
         pg.sleep(0.2)
         if event_th.is_set():
             return
-        check_equip()
+        #check_equip()
 
 
 def key_code(key):
-    if key == keyboard.Key.esc:
+    if key == keyboard.Key.home:
         event_th.set()
         return False
     elif key == keyboard.Key.insert:
