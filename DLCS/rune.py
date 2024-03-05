@@ -14,12 +14,13 @@ REGION_RING = (2393, 257, 32, 32)
 
 
 def check_mana():
-    print(f'checando mana...')
+    print('checando mana...')
     if event_th.is_set():
         return
     if pg.pixel(2497, 160) != MANA_STATUS:
-        if pg.pixel(2486, 160) != MANA_STATUS:
-            pg.press('f')
+            if pg.pixel(2476, 160) != MANA_STATUS:
+                pg.press('l')
+                pg.sleep(0.4)
     if event_th.is_set():
         return
     
@@ -41,7 +42,7 @@ def check_equip():
         print('colocando ring')
         pg.press('7')
         pg.sleep(0.2)
-    pg.press('F1')
+    pg.press('=')
     pg.sleep(30)
     if event_th.is_set():
         return

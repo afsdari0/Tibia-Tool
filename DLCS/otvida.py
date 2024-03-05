@@ -6,15 +6,14 @@ import threading
 aviso = 1
 print(aviso)
 
-LIFE_STATUS = (218, 79, 79)
-FULL_LIFE_STATUS = (218, 79, 79)
-HEAL_FRIEND = (63,63,63)
-MANA_STATUS = (83, 80, 217)
+LIFE_STATUS = (219, 79, 79)
+FULL_LIFE_STATUS = (219, 79, 79)
+HEAL_FRIEND = (66,67,67)
+MANA_STATUS = (83, 80, 218)
 REGION_BUF_BAR = (2392, 315, 107, 11)
 REGION_AMULET = (2393, 185, 32, 32)
 REGION_RING = (2393, 257, 32, 32)
 MANA_RANGE = 0
-
 
 
 def check_status(name):
@@ -40,10 +39,10 @@ def check_status(name):
                     pg.press('f')
         print (MANA_RANGE)
         MANA_RANGE += 1
-        if MANA_RANGE >= 6:
+        if MANA_RANGE >= 8:
              MANA_RANGE = 0
-    if pg.pixel(480,55) == HEAL_FRIEND:
-        pg.press('F1')
+    #if pg.pixel(473,55) == HEAL_FRIEND:
+        #pg.press('F1')
         
     #if pg.locateOnScreen('imgs/buf_hungry.png', confidence=0.90, region=REGION_BUF_BAR) != None:
         #print('entrou eenenenene')
